@@ -14,5 +14,3 @@ if (embetile_FOUND)
 
   embetile_make_available(crc)
 endif ()
-
-include(${PROJECT_SOURCE_DIR}/cmake/crc_install.cmake)
