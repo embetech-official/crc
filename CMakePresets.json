@@ -14,7 +14,7 @@
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "CONFIG_RING_BUFFER_BUILD_TESTS": "OFF"
+                "CONFIG_CRC_BUILD_TESTS": "OFF"
             }
         },
         {
@@ -24,7 +24,7 @@
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "CONFIG_RING_BUFFER_BUILD_TESTS": "ON"
+                "CONFIG_CRC_BUILD_TESTS": "ON"
             }
         }
     ],

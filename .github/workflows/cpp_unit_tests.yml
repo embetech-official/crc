@@ -12,25 +12,17 @@ jobs:
 
     runs-on: [self-hosted, linux, x64]
     steps:
-      - name: Setup Github Token 
-        run: |
-          git config --global credential.helper store
-          git config --global --get-regexp "url.*insteadof" |xargs -rL1 git config --global --unset
-          git config --global --add url.https://${{secrets.GH_TOKEN}}@github.com/.insteadOf https://github.com/
-      
       - uses: lukka/get-cmake@latest
         with:
           useLocalCache: true
       
       - uses: actions/checkout@v4
-        with:
-          token: ${{secrets.GH_TOKEN}} 
 
       - name: Configure
-        run: cmake -B build -G Ninja
+        run: cmake --preset devel
 
       - name: Build
-        run: cmake --build build -t all
+        run: cmake --build --preset devel
 
       - name: Test
-        run: ctest --test-dir build
+        run: ctest --preset default
