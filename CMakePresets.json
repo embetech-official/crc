@@ -32,11 +32,17 @@
     "buildPresets": [
         {
             "name": "testing",
-            "configurePreset": "testing"
+            "configurePreset": "testing",
+            "targets": [
+                "crc_ut"
+            ]
         },
         {
             "name": "release",
-            "configurePreset": "release"
+            "configurePreset": "release",
+            "targets": [
+                "crc"
+            ]
         }
     ],
     "testPresets": [

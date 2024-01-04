@@ -22,4 +22,4 @@ if (embetile_FOUND)
   embetile_make_available(crc)
 endif ()
 
-include(${PROJECT_SOURCE_DIR}/cmake/component-install.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/crc_install.cmake)
