@@ -8,38 +8,29 @@
     "include": [],
     "configurePresets": [
         {
-            "name": "testing",
-            "displayName": "Testing",
-            "generator": "Ninja",
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CONFIG_CRC_BUILD_TESTS": "ON"
-            }
-        },
-        {
-            "name": "release",
-            "displayName": "Release",
+            "name": "default",
+            "displayName": "Default",
             "generator": "Ninja",
             "binaryDir": "${sourceDir}/build/${presetName}",
             "installDir": "${sourceDir}/release",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "CONFIG_CRC_BUILD_TESTS": "OFF"
+                "CONFIG_CRC_ENABLE_INSTALL_TARGET": "ON",
+                "CONFIG_CRC_BUILD_TESTS": "ON"
             }
         }
     ],
     "buildPresets": [
         {
             "name": "testing",
-            "configurePreset": "testing",
+            "configurePreset": "default",
             "targets": [
                 "crc_ut"
             ]
         },
         {
             "name": "release",
-            "configurePreset": "release",
+            "configurePreset": "default",
             "targets": [
                 "crc",
                 "install"
@@ -49,7 +40,7 @@
     "testPresets": [
         {
             "name": "testing",
-            "configurePreset": "testing",
+            "configurePreset": "default",
             "output": {
                 "outputOnFailure": true
             },
