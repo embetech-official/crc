@@ -13,12 +13,7 @@
             "description": "Default build configuration",
             "generator": "Ninja",
             "binaryDir": "${sourceDir}/build",
-            "installDir": "${sourceDir}/release",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release",
-                "CONFIG_CRC_ENABLE_INSTALL_TARGET": "ON",
-                "CONFIG_CRC_BUILD_TESTS": "ON"
-            }
+            "installDir": "${sourceDir}/release"
         }
     ],
     "buildPresets": [
