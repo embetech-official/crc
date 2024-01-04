@@ -10,6 +10,7 @@
         {
             "name": "default",
             "displayName": "Default",
+            "description": "Default build configuration",
             "generator": "Ninja",
             "binaryDir": "${sourceDir}/build",
             "installDir": "${sourceDir}/release",
