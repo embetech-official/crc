@@ -41,7 +41,8 @@
             "name": "release",
             "configurePreset": "release",
             "targets": [
-                "crc"
+                "crc",
+                "install"
             ]
         }
     ],
