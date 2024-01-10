@@ -22,6 +22,6 @@ if (embetile_FOUND)
   embetile_make_available(crc)
 endif ()
 
-if (CONFIG_CRC_INSTALL)
+if (CONFIG_CRC_INSTALL OR PROJECT_IS_TOP_LEVEL)
   include(${PROJECT_SOURCE_DIR}/cmake/crc_install.cmake)
 endif ()
