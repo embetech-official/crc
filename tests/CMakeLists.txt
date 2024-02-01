@@ -1,4 +1,10 @@
-project(crc_ut LANGUAGES CXX C)
+project(crc_ut)
+
+get_property(LANGUAGES GLOBAL PROPERTY ENABLED_LANGUAGES)
+if (NOT CXX IN_LIST LANGUAGES)
+  message(AUTHOR_ERROR "C++ support is required")
+  return()
+endif ()
 
 cmake_policy(SET CMP0135 NEW)
 
