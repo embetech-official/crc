@@ -32,7 +32,7 @@
             "name": "release",
             "configurePreset": "default",
             "targets": [
-                "crc",
+                "crc_doc",
                 "install"
             ]
         }
