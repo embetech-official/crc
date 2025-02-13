@@ -22,13 +22,13 @@ jobs:
       - name: Build tests
         run: cmake --build --preset testing
 
-      - name: Build documentation
-        run: cmake --build --preset testing
-
       - name: Test
         run: ctest --preset testing
 
+      - name: Build documentation
+        run: cmake --build --preset testing
+
       - name: Build release
-        run: cmake --build --preset release
+        run: cmake --build --preset install
         
 
