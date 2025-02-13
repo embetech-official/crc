@@ -12,7 +12,7 @@ configure_package_config_file(
 include(GNUInstallDirs)
 install(TARGETS crc EXPORT crc_targets)
 
-install(DIRECTORY include/embetech DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/src/include/embetech DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/crc-config.cmake
               ${CMAKE_CURRENT_BINARY_DIR}/crc-config-version.cmake DESTINATION ${CMAKES_EXPORT_DIR}
