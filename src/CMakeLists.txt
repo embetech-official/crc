@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.21)
-
 add_library(crc STATIC crc16.c crc32.c crc8.c)
 target_include_directories(
   crc PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>
@@ -26,6 +24,3 @@ if (embetile_FOUND)
   embetile_make_available(crc)
 endif ()
 
-if (CRC_INSTALL OR PROJECT_IS_TOP_LEVEL)
-  include(${PROJECT_SOURCE_DIR}/cmake/crc_install.cmake)
-endif ()

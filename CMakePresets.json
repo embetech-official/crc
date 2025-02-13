@@ -24,17 +24,18 @@
         {
             "name": "testing",
             "configurePreset": "default",
-            "targets": [
-                "crc_ut"
-            ]
+            "configuration": "Debug",
+            "targets": "crc_ut"
         },
         {
-            "name": "release",
+            "name": "documentation",
             "configurePreset": "default",
-            "targets": [
-                "crc_doc",
-                "install"
-            ]
+            "targets": "crc_doc"
+        },
+        {
+            "name": "install",
+            "configurePreset": "default",
+            "targets": "install"
         }
     ],
     "testPresets": [
