@@ -1,0 +1,3 @@
+[submodule "cmake/embenet-toolchains"]
+	path = cmake/embenet-toolchains
+	url = https://github.com/embetech-official/embenet-toolchains.git
