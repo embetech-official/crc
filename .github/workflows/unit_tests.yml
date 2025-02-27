@@ -1,0 +1,29 @@
+name: Unit Tests
+on:
+  push:
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: "0 18 * * 1-5" # Every weekday at 18:00
+
+jobs:
+  ut:
+    uses: embetech-official/embenet-toolchains/.github/workflows/cmake_build.yml@main
+    secrets: inherit
+    with:
+      configure_preset: native
+      build_preset: ut
+      build_release_config: false
+      test_preset: native
+
+  doc:
+    uses: embetech-official/embenet-toolchains/.github/workflows/cmake_build.yml@main
+    secrets: inherit
+    with:
+      configure_preset: native
+      build_preset: documentation
+      build_debug_config: false
+
+    
+

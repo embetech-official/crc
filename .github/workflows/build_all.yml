@@ -1,0 +1,26 @@
+name: Build all
+
+on:
+  workflow_dispatch:
+  
+  workflow_call:
+
+jobs:
+  build_all:
+    strategy:
+      fail-fast: false
+      matrix:
+        configure_preset: [x86_64-w64, x86_64-linux, armv6-m-none-sf, armv6-linux-hf, armv7-a-linux-hf, armv7e-m-none-hf, armv8-a-linux-hf]
+
+
+    uses: embetech-official/embenet-toolchains/.github/workflows/cmake_build.yml@main
+    secrets: inherit
+    with:
+      configure_preset: ${{ matrix.configure_preset }}
+      build_release_config: false
+      build_target: install
+
+
+
+
+

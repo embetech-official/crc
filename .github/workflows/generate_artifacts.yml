@@ -1,0 +1,58 @@
+name: Generate Artifacts
+
+on:
+  workflow_dispatch:
+  
+  workflow_call:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        configure_preset: [x86_64-w64, x86_64-linux, armv6-m-none-sf, armv6-linux-hf, armv7-a-linux-hf, armv7e-m-none-hf, armv8-a-linux-hf]
+    uses: embetech-official/embenet-toolchains/.github/workflows/cmake_build.yml@main
+    secrets: inherit
+    with:
+      configure_preset: ${{ matrix.configure_preset }}
+      build_target: install
+      artifact_name: ${{ matrix.configure_preset }}
+
+  doc:
+    uses: embetech-official/embenet-toolchains/.github/workflows/cmake_build.yml@main
+    secrets: inherit
+    with:
+      configure_preset: native
+      build_preset: documentation
+      build_debug_config: false
+      artifact_name: documentation
+  
+  multiarch:
+    needs: [build, doc]
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: multiarch
+          merge-multiple: true
+
+      - name: modify targets to use multiarch
+        uses: mingjun97/file-regex-replace@v1
+        with:
+          regex: 'lib\/.*\/'
+          replacement: lib/${EMBENET_ARCHITECTURE}/
+          path: multiarch/cmake/
+
+      - name: enable multiarch selection
+        uses: mingjun97/file-regex-replace@v1
+        with:
+          regex: 'embenet_enms_MULTIARCH FALSE'
+          replacement: 'embenet_enms_MULTIARCH TRUE'
+          path: multiarch/cmake/
+          
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: multiarch
+          path: multiarch
+
