@@ -1,0 +1,63 @@
+{
+    "version": 8,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 25,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "native",
+            "displayName": "Native",
+            "description": "Let CMake choose the compiler",
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/build/${presetName}/install",
+            "cacheVariables": {
+                "CMAKE_CXX_SCAN_FOR_MODULES": "OFF",
+                "CMAKE_CONFIGURATION_TYPES": "Release;Debug",
+                "CMAKE_DEFAULT_BUILD_TYPE": "Release",
+                "CMAKE_DEBUG_POSTFIX": "-debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "environment": {
+                "CFLAGS": "-Wall -Wextra -Wpedantic -Wunused-parameter -Winit-self -Wcast-align -Wconversion -Wnull-dereference -Wduplicated-cond  -Wsign-conversion -Wlogical-op",
+                "CXXFLAGS": "-Wall -Wextra -Wpedantic -Wunused-parameter -Winit-self -Wcast-align -Wconversion -Wnull-dereference -Wduplicated-cond  -Wsign-conversion -Wlogical-op"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "ut",
+            "description": "Unit tests",
+            "configurePreset": "native",
+            "configuration": "Debug",
+            "targets": "crc_ut"
+        },
+        {
+            "name": "documentation",
+            "description": "Generate documentation",
+            "configurePreset": "native",
+            "targets": "crc_doc"
+        },
+        {
+            "name": "install",
+            "description": "Release target",
+            "configurePreset": "native",
+            "targets": "install"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "ut",
+            "configurePreset": "native",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true
+            }
+        }
+    ]
+}
