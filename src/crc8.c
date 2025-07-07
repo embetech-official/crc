@@ -1,3 +1,12 @@
+/**
+ * @file
+ * @license   ${PROJECT_LICENSE}
+ * @copyright ${PROJECT_COPYRIGHT}
+ * @version   ${PROJECT_VERSION}
+ * @purpose   8-bit CRC calculation routines
+ * @brief     8-bit CRC calculation routines
+ */
+
 #include "embetech/crc8.h"
 
 #define CRC8INIT 0x00

@@ -1,3 +1,12 @@
+/**
+ * @file
+ * @license   ${PROJECT_LICENSE}
+ * @copyright ${PROJECT_COPYRIGHT}
+ * @version   ${PROJECT_VERSION}
+ * @purpose   32-bit CRC calculation routines
+ * @brief     32-bit CRC calculation routines
+ */
+
 #include "embetech/crc32.h"
 
 #if __has_include(<embetech/embetile.h>) && EMBETILE_ENABLED // This macro is defined by invoking embetile_define_component

@@ -1,16 +1,24 @@
+/**
+ * @file
+ * @license   ${PROJECT_LICENSE}
+ * @copyright ${PROJECT_COPYRIGHT}
+ * @version   ${PROJECT_VERSION}
+ * @purpose   32-bit CRC calculation routines
+ * @brief     32-bit CRC calculation routines
+ */
+
 #ifndef CRC32_H_
 #define CRC32_H_
 
 #include <stddef.h>
 #include <stdint.h>
 
-/** @defgroup crc32 CRC 32 bit handling routines.
+/** @defgroup crc32 CRC-32 calculation routines
  *  @code
  *  #include <embetech/crc32.h>
  *  @endcode
  *
  * This module groups utility functions that calculate 32-bit CRC.
- *
  * @{
  */
 

@@ -1,10 +1,19 @@
+/**
+ * @file
+ * @license   ${PROJECT_LICENSE}
+ * @copyright ${PROJECT_COPYRIGHT}
+ * @version   ${PROJECT_VERSION}
+ * @purpose   16-bit CRC calculation routines
+ * @brief     16-bit CRC calculation routines
+ */
+
 #ifndef CRC16_H_
 #define CRC16_H_
 
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-/** @defgroup crc16 CRC 16 bit handling routines.
+/** @defgroup crc16 CRC-16 calculation routines
  *  @code
  *  #include <embetech/crc16.h>
  *  @endcode

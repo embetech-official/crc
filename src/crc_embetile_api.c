@@ -1,3 +1,12 @@
+/**
+ * @file
+ * @license   ${PROJECT_LICENSE}
+ * @copyright ${PROJECT_COPYRIGHT}
+ * @version   ${PROJECT_VERSION}
+ * @purpose   embeTILE API for CRC calculation routines
+ * @brief     This file defines API calls that should be available as embeTILE calls when using embeTILE
+ */
+
 #if __has_include(<embetech/embetile.h>) && EMBETILE_ENABLED // This macro is defined by invoking embetile_define_component
 #include <embetech/embetile.h>
 
