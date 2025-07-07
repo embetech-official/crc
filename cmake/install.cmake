@@ -4,27 +4,24 @@ include(GNUInstallDirs)
 set(PROJECT_LICENSE "MIT License")
 set(PROJECT_COPYRIGHT "Embetech sp. z o.o.")
 
-set_target_properties(crc PROPERTIES EXPORT_NAME crc)
-set(CMAKES_EXPORT_DIR cmake)
-
-write_basic_package_version_file(crc-config-version.cmake COMPATIBILITY SameMajorVersion ARCH_INDEPENDENT)
-configure_package_config_file(
-  ${PROJECT_SOURCE_DIR}/cmake/crc-config.cmake.in
-  ${CMAKE_CURRENT_BINARY_DIR}/crc-config.cmake INSTALL_DESTINATION ${CMAKES_EXPORT_DIR}
+file(GLOB HEADERS_TO_CONFIGURE RELATIVE ${PROJECT_SOURCE_DIR}/src
+     "${PROJECT_SOURCE_DIR}/src/include/embetech/*.h" 
 )
-install(TARGETS crc EXPORT crc_targets)
-
-set(INCLUDE_COMMON_DIR ${PROJECT_SOURCE_DIR}/src/include)
-file(GLOB HEADERS_TO_CONFIGURE RELATIVE ${INCLUDE_COMMON_DIR}
-     "${INCLUDE_COMMON_DIR}/embetech/*.h"
+file(GLOB SOURCES_TO_CONFIGURE RELATIVE ${PROJECT_SOURCE_DIR}/src
+     "${PROJECT_SOURCE_DIR}/src/*.c" 
 )
 
-message(STATUS "Configuring headers: ${HEADERS_TO_CONFIGURE}")
+message(STATUS "Updating file headers in: ${HEADERS_TO_CONFIGURE} ${SOURCES_TO_CONFIGURE}")
 
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/include/embetech
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/
+        DESTINATION  ${CMAKE_INSTALL_PREFIX}
+        PATTERN "include" EXCLUDE
+        PATTERN "CMakeLists.txt" EXCLUDE
+)
 
 # Invoke the code below during the install phase - this will replace the placeholders in the headers
 # with the actual values
@@ -35,18 +32,18 @@ install(
   set(PROJECT_VERSION \"${PROJECT_VERSION}\")
 
   foreach(header ${HEADERS_TO_CONFIGURE})
-    set(exported_header \${CMAKE_INSTALL_PREFIX}/include/\${header})
+    set(exported_header \${CMAKE_INSTALL_PREFIX}/\${header})
     message(STATUS \"Configuring doxygen header: \${exported_header}\")
     configure_file(\${exported_header} \${exported_header})
   endforeach()
-  "
-)
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/crc-config.cmake
-              ${CMAKE_CURRENT_BINARY_DIR}/crc-config-version.cmake DESTINATION ${CMAKES_EXPORT_DIR}
+  foreach(source ${SOURCES_TO_CONFIGURE})
+    set(exported_source \${CMAKE_INSTALL_PREFIX}/\${source})
+    message(STATUS \"Configuring doxygen header: \${exported_source}\")
+    configure_file(\${exported_source} \${exported_source})
+  endforeach()  
+  "
 )
 
 install(FILES LICENSE DESTINATION ${CMAKE_INSTALL_PREFIX}
         RENAME LICENSE.txt)
-
-install(EXPORT crc_targets NAMESPACE embetech:: DESTINATION ${CMAKES_EXPORT_DIR})
