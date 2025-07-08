@@ -27,12 +27,12 @@ jobs:
       - name: Build doc
         run: cmake --build --preset documentation
         
-      - name: Build release
-        run: cmake --build --preset install
-
       - name: Test
         run: ctest --preset ut   
         
+      - name: Make source release
+        run: cmake --install build/native --component install-source
+
       - uses: actions/upload-artifact@v4
         with:
           name: crc-${{ github.ref_name }} 

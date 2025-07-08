@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.25)
 
 project(crc VERSION 1.0.1)
+set(PROJECT_LICENSE "MIT License")
+set(PROJECT_COPYRIGHT "Embetech sp. z o.o.")
 
 option(CRC_TESTS "Configure unit tests target" ${PROJECT_IS_TOP_LEVEL})
 option(CRC_DOC "Configure documentation target" ${PROJECT_IS_TOP_LEVEL})
