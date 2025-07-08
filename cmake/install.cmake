@@ -26,16 +26,12 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/crc-config.cmake
 )
 
 # Install the main target (binary library)
-install(TARGETS crc EXPORT crc_targets COMPONENT install-binary)
+install(TARGETS crc EXPORT crc_targets)
 
 # Install the headers
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/include/embetech
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-        COMPONENT install-source EXCLUDE_FROM_ALL
-)
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/include/embetech
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-        COMPONENT install-binary
+        COMPONENT install-source
 )
 
 # Install the sources
@@ -60,22 +56,9 @@ install(
     configure_file(\${exported_header} \${exported_header})
   endforeach()
   "
-  COMPONENT install-source EXCLUDE_FROM_ALL
+  COMPONENT install-source
 )
-install(
-  CODE "
-  set(PROJECT_LICENSE \"${PROJECT_LICENSE}\")
-  set(PROJECT_COPYRIGHT \"${PROJECT_COPYRIGHT}\")
-  set(PROJECT_VERSION \"${PROJECT_VERSION}\")
 
-  foreach(header ${HEADERS_TO_CONFIGURE})
-    set(exported_header \${CMAKE_INSTALL_PREFIX}/\${header})
-    message(STATUS \"Configuring doxygen header: \${exported_header}\")
-    configure_file(\${exported_header} \${exported_header})
-  endforeach()
-  "
-  COMPONENT install-binary 
-)
 
 # Invoke the code below during the install phase - this will replace the placeholders in the sources
 # with the actual values
@@ -95,7 +78,6 @@ install(
 )
 
 # Install the license file
-install(FILES LICENSE DESTINATION ${CMAKE_INSTALL_PREFIX} RENAME LICENSE.txt  COMPONENT install-source EXCLUDE_FROM_ALL)
-install(FILES LICENSE DESTINATION ${CMAKE_INSTALL_PREFIX} RENAME LICENSE.txt  COMPONENT install-binary)
+install(FILES LICENSE DESTINATION ${CMAKE_INSTALL_PREFIX} RENAME LICENSE.txt  COMPONENT install-source)
 
 install(EXPORT crc_targets NAMESPACE embetech:: DESTINATION ${CMAKES_EXPORT_DIR})
