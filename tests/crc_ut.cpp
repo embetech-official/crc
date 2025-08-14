@@ -8,6 +8,19 @@
 
 constexpr static uint64_t seed = 0x123456789ABCDEF0;
 
+TEST(CRC, crc8check) {
+  uint8_t data[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+  uint8_t crc1 = CRC8_Init();
+  for(size_t i = 0; i < sizeof(data); ++i) {
+    crc1 = CRC8_UpdateByte(data[i], crc1);
+  }
+
+  uint8_t crc2 = CRC8_UpdateBuf(data, sizeof(data), CRC8_Init());
+
+  EXPECT_EQ(crc1, crc2) << "CRC8 mismatch when using byte-by-byte update vs buffer update";
+}
+
 TEST(CRC, MixedBuffers) {
   constexpr static uint32_t dataSize = 1024 * 1024 * 16;
 
@@ -20,7 +33,6 @@ TEST(CRC, MixedBuffers) {
 
   uint32_t patternCrc32 = CRC32_Init();
   patternCrc32 = CRC32_UpdateBuf(buffer.data(), dataSize, patternCrc32);
-  patternCrc32 = CRC32_Finalize(patternCrc32);
 
   uint16_t patternCrc16Ccitt = CRC16_CCITT_Init();
   patternCrc16Ccitt = CRC16_CCITT_UpdateBuf(buffer.data(), dataSize, patternCrc16Ccitt);
@@ -38,16 +50,16 @@ TEST(CRC, MixedBuffers) {
     uint8_t crc8 = CRC8_Init();
 
     for(size_t i = 0; i < dataSize; i += chunkSize) {
-      crc32 = CRC32_UpdateBuf(buffer.data() + i, chunkSize, crc32);
+      crc32 = CRC32_Append(buffer.data() + i, chunkSize, crc32);
       crc16Ccitt = CRC16_CCITT_UpdateBuf(buffer.data() + i, chunkSize, crc16Ccitt);
       crc16Modbus = CRC16_MODBUS_UpdateBuf(buffer.data() + i, chunkSize, crc16Modbus);
       crc8 = CRC8_UpdateBuf(buffer.data() + i, chunkSize, crc8);
     }
-    crc32 = CRC32_Finalize(32);
+    crc32 = CRC32_Finalize(crc32);
 
-    EXPECT_EQ(patternCrc32, crc32);
-    EXPECT_EQ(patternCrc16Ccitt, crc16Ccitt);
-    EXPECT_EQ(patternCrc16Modbus, crc16Modbus);
-    EXPECT_EQ(patternCrc8, crc8);
+    EXPECT_EQ(patternCrc32, crc32) << "CRC32 mismatch for chunk size " << chunkSize;
+    EXPECT_EQ(patternCrc16Ccitt, crc16Ccitt) << "CRC16_CCITT mismatch for chunk size " << chunkSize;
+    EXPECT_EQ(patternCrc16Modbus, crc16Modbus) << "CRC16_MODBUS mismatch for chunk size " << chunkSize;
+    EXPECT_EQ(patternCrc8, crc8) << "CRC8 mismatch for chunk size " << chunkSize;
   }
 }
