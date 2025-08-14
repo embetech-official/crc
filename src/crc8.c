@@ -52,8 +52,6 @@ uint8_t CRC8_UpdateBuf(void const *buf, size_t size, uint8_t crc) {
   uint8_t data;
   uint8_t feedback_bit;
 
-  crc = CRC8INIT;
-
   for(i = 0; i < size; i++) {
     data = ((uint8_t const *)buf)[i];
 
