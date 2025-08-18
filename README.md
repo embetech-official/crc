@@ -10,10 +10,10 @@
 CRC is a C library to calculate 8/16/32- bit checksums using predefined polynomials
 
 ## Supported Polynomials
-- CRC8: X^8^+X^5^+X^4^+X^0^ (Naive)
-- CRC16-CCITT (Naive, LUT)
-- CRC16-MODBUS (Naive, LUT)
-- CRC32-??? (LUT)
+- CRC8-ITU (Poly 0x07, Init 0x00, no input/output bit reflection, XorOut 0x55)
+- CRC16-CCITT BLUETOOTH CCITT-TRUE V-41-LSB KERMIT (Poly 0x1021, Init 0xFFFF, no input/output bit reflection, XorOut 0x0000)
+- CRC16-MODBUS (Poly 0x8005, Init 0xFFFF, input/output bit reflection, XorOut 0x0000)
+- CRC32-POSIX/cksum (Poly 0x04C11DB7, Init 0x00000000, no input/output bit reflection, XorOut 0xFFFFFFFF)
 
 
 ## Quick Start
@@ -36,9 +36,14 @@ In your source files:
 uint8_t your_data[100] = {};
 
 // checksum of buffer
-uint16_t crc = CRC16_CCITT_UpdateBuf(your_data, sizeof(your_data),  CRC16_CCITT_Init());
+uitn16_t crc = CRC16_CCITT_Init();
+crc = CRC16_CCITT_UpdateBuf(your_data, sizeof(your_data), crc);
+crc = CRC16_CCITT_Finalize(crc);
 
 // Manually append a byte to the checksum calculation
-uint8_t other_byte = 42;
-crc =  CRC16_CCITT_UpdateByte(other_byte, crc);
+uint8_t additional_data = 0xaa;
+uitn16_t crc2 = CRC16_CCITT_Init();
+crc2 = CRC16_CCITT_UpdateBuf(your_data, sizeof(your_data), crc2);
+crc2 = CRC16_CCITT_UpdateBuf(&additional_data, sizeof(additional_data), crc2);
+crc2 = CRC16_CCITT_Finalize(crc);
 ```

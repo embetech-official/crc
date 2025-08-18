@@ -28,20 +28,21 @@ extern "C" {
 /**
  * Returns CRC initialization value.
  */
-uint8_t CRC8_Init(void);
+uint8_t CRC8_ITU_Init(void);
 
 /**
- * Updates CRC with a single byte of input data.
+ * Updates ITU CRC8 with a buffer of input data using the polynomial division formula.
  *
- * @param[in] byte byte of data.
+ * @param[in] in input data buffer.
+ * @param[in] size size of input data buffer (in bytes).
  * @param[in] crc current value of CRC.
  *
  * @return new CRC value.
  */
-uint8_t CRC8_UpdateByte(uint8_t byte, uint8_t crc);
+uint8_t CRC8_ITU_UpdateFormulaIc(void const *in, size_t size, uint8_t crc);
 
 /**
- * Updates CRC with a buffer of input data using the CCITT algorithm.
+ * Updates ITU CRC8 with a buffer of input data using the Look-up-table.
  *
  * @param[in] in input data buffer.
  * @param[in] size size of input data buffer (in bytes).
@@ -49,7 +50,16 @@ uint8_t CRC8_UpdateByte(uint8_t byte, uint8_t crc);
 
  * @return new CRC value.
  */
-uint8_t CRC8_UpdateBuf(void const *in, size_t size, uint8_t crc);
+uint8_t CRC8_ITU_UpdateLut(void const *in, size_t size, uint8_t crc);
+
+/**
+ * Finalizes the CRC.
+ *
+ * @param[in] crc current value of CRC.
+ *
+ * @return final CRC value.
+ */
+uint8_t CRC8_ITU_Finalize(uint8_t crc);
 
 #ifdef __cplusplus
 }

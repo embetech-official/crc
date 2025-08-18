@@ -8,11 +8,11 @@ option(CRC_TESTS "Configure unit tests target" ${PROJECT_IS_TOP_LEVEL})
 option(CRC_DOC "Configure documentation target" ${PROJECT_IS_TOP_LEVEL})
 option(CRC_EXAMPLES "Configure examples target" ${PROJECT_IS_TOP_LEVEL})
 option(CRC_INSTALL "Configure install target" ON)
-option(CRC_USE_LUT_16 "Use lookup table for 16-bit CRC calculation" ON)
 
 add_subdirectory(src)
 
 if (CRC_TESTS)
+  set(CMAKE_CXX_STANDARD 20)
   include(CTest)
   add_subdirectory(tests EXCLUDE_FROM_ALL)
 endif ()
