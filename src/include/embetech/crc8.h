@@ -39,7 +39,7 @@ uint8_t CRC8_ITU_Init(void);
  *
  * @return new CRC value.
  */
-uint8_t CRC8_ITU_UpdateFormulaIc(void const *in, size_t size, uint8_t crc);
+uint8_t CRC8_ITU_UpdateUsingFormula(void const *in, size_t size, uint8_t crc);
 
 /**
  * Updates ITU CRC8 with a buffer of input data using the Look-up-table.
@@ -50,7 +50,7 @@ uint8_t CRC8_ITU_UpdateFormulaIc(void const *in, size_t size, uint8_t crc);
 
  * @return new CRC value.
  */
-uint8_t CRC8_ITU_UpdateLut(void const *in, size_t size, uint8_t crc);
+uint8_t CRC8_ITU_UpdateUsingLut(void const *in, size_t size, uint8_t crc);
 
 /**
  * Finalizes the CRC.

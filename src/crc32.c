@@ -11,7 +11,7 @@
 
 uint32_t CRC32_CKSUM_Init(void) { return 0x00000000; }
 
-uint32_t CRC32_CKSUM_UpdateLut(void const *buffer, size_t size, uint32_t crc) {
+uint32_t CRC32_CKSUM_UpdateUsingLut(void const *buffer, size_t size, uint32_t crc) {
   static uint32_t const crc32CksumPosix[256] = {
       0x00000000, 0x04C11DB7, 0x09823B6E, 0x0D4326D9, 0x130476DC, 0x17C56B6B, 0x1A864DB2, 0x1E475005, 0x2608EDB8, 0x22C9F00F, 0x2F8AD6D6, 0x2B4BCB61,
       0x350C9B64, 0x31CD86D3, 0x3C8EA00A, 0x384FBDBD, 0x4C11DB70, 0x48D0C6C7, 0x4593E01E, 0x4152FDA9, 0x5F15ADAC, 0x5BD4B01B, 0x569796C2, 0x52568B75,
@@ -47,7 +47,7 @@ uint32_t CRC32_CKSUM_UpdateLut(void const *buffer, size_t size, uint32_t crc) {
   return result;
 }
 
-uint32_t CRC32_CKSUM_UpdateFormulaIc(void const *buffer, size_t size, uint32_t crc) {
+uint32_t CRC32_CKSUM_UpdateUsingFormula(void const *buffer, size_t size, uint32_t crc) {
   uint8_t const *p = buffer;
 
   while(size--) {

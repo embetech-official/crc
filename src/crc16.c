@@ -11,7 +11,7 @@
 
 uint16_t CRC16_MODBUS_Init(void) { return 0xFFFF; }
 
-uint16_t CRC16_MODBUS_UpdateLut(void const *in, size_t size, uint16_t crc) {
+uint16_t CRC16_MODBUS_UpdateUsingLut(void const *in, size_t size, uint16_t crc) {
   static uint16_t const crc16ModbusLut[] = {
       0X0000, 0XC0C1, 0XC181, 0X0140, 0XC301, 0X03C0, 0X0280, 0XC241, 0XC601, 0X06C0, 0X0780, 0XC741, 0X0500, 0XC5C1, 0XC481, 0X0440, 0XCC01, 0X0CC0,
       0X0D80, 0XCD41, 0X0F00, 0XCFC1, 0XCE81, 0X0E40, 0X0A00, 0XCAC1, 0XCB81, 0X0B40, 0XC901, 0X09C0, 0X0880, 0XC841, 0XD801, 0X18C0, 0X1980, 0XD941,
@@ -41,7 +41,7 @@ uint16_t CRC16_MODBUS_UpdateLut(void const *in, size_t size, uint16_t crc) {
   return crc;
 }
 
-uint16_t CRC16_MODBUS_UpdateFormulaIc(void const *in, size_t size, uint16_t crc) {
+uint16_t CRC16_MODBUS_UpdateUsingFormula(void const *in, size_t size, uint16_t crc) {
   uint8_t const *p = in;
   while(size--) {
     crc ^= *p++;
@@ -60,7 +60,7 @@ uint16_t CRC16_MODBUS_Finalize(uint16_t crc) { return crc; }
 
 uint16_t CRC16_CCITT_Init(void) { return 0; }
 
-uint16_t CRC16_CCITT_UpdateLut(void const *in, size_t size, uint16_t crc) {
+uint16_t CRC16_CCITT_UpdateUsingLut(void const *in, size_t size, uint16_t crc) {
   static uint16_t const crc16ModbusLut[] = {
       0x0000, 0x1189, 0x2312, 0x329B, 0x4624, 0x57AD, 0x6536, 0x74BF, 0x8C48, 0x9DC1, 0xAF5A, 0xBED3, 0xCA6C, 0xDBE5, 0xE97E, 0xF8F7, 0x1081, 0x0108,
       0x3393, 0x221A, 0x56A5, 0x472C, 0x75B7, 0x643E, 0x9CC9, 0x8D40, 0xBFDB, 0xAE52, 0xDAED, 0xCB64, 0xF9FF, 0xE876, 0x2102, 0x308B, 0x0210, 0x1399,
@@ -90,7 +90,7 @@ uint16_t CRC16_CCITT_UpdateLut(void const *in, size_t size, uint16_t crc) {
   return crc;
 }
 
-uint16_t CRC16_CCITT_UpdateFormulaIc(void const *in, size_t size, uint16_t crc) {
+uint16_t CRC16_CCITT_UpdateUsingFormula(void const *in, size_t size, uint16_t crc) {
   uint8_t const *p = in;
   while(size--) {
     crc ^= *p++;

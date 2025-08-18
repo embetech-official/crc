@@ -35,14 +35,14 @@ TEST(CRC, PatternCheckWithMixedBufferSize) {
     uint8_t crc8ItuLut = CRC8_ITU_Init();
 
     for(size_t i = 0; i < dataSize; i += chunkSize) {
-      crc32FormulaIc = CRC32_CKSUM_UpdateFormulaIc(buffer.data() + i, chunkSize, crc32FormulaIc);
-      crc32Lut = CRC32_CKSUM_UpdateLut(buffer.data() + i, chunkSize, crc32Lut);
-      crc16ModbusLut = CRC16_MODBUS_UpdateLut(buffer.data() + i, chunkSize, crc16ModbusLut);
-      crc16ModbusFormulaIc = CRC16_MODBUS_UpdateFormulaIc(buffer.data() + i, chunkSize, crc16ModbusFormulaIc);
-      crc16CcittLut = CRC16_CCITT_UpdateLut(buffer.data() + i, chunkSize, crc16CcittLut);
-      crc16CcittFormulaIc = CRC16_CCITT_UpdateFormulaIc(buffer.data() + i, chunkSize, crc16CcittFormulaIc);
-      crc8ItuFormulaIc = CRC8_ITU_UpdateFormulaIc(buffer.data() + i, chunkSize, crc8ItuFormulaIc);
-      crc8ItuLut = CRC8_ITU_UpdateLut(buffer.data() + i, chunkSize, crc8ItuLut);
+      crc32FormulaIc = CRC32_CKSUM_UpdateUsingFormula(buffer.data() + i, chunkSize, crc32FormulaIc);
+      crc32Lut = CRC32_CKSUM_UpdateUsingLut(buffer.data() + i, chunkSize, crc32Lut);
+      crc16ModbusLut = CRC16_MODBUS_UpdateUsingLut(buffer.data() + i, chunkSize, crc16ModbusLut);
+      crc16ModbusFormulaIc = CRC16_MODBUS_UpdateUsingFormula(buffer.data() + i, chunkSize, crc16ModbusFormulaIc);
+      crc16CcittLut = CRC16_CCITT_UpdateUsingLut(buffer.data() + i, chunkSize, crc16CcittLut);
+      crc16CcittFormulaIc = CRC16_CCITT_UpdateUsingFormula(buffer.data() + i, chunkSize, crc16CcittFormulaIc);
+      crc8ItuFormulaIc = CRC8_ITU_UpdateUsingFormula(buffer.data() + i, chunkSize, crc8ItuFormulaIc);
+      crc8ItuLut = CRC8_ITU_UpdateUsingLut(buffer.data() + i, chunkSize, crc8ItuLut);
     }
     crc32FormulaIc = CRC32_CKSUM_Finalize(crc32FormulaIc);
     crc32Lut = CRC32_CKSUM_Finalize(crc32Lut);

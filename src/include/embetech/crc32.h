@@ -40,7 +40,7 @@ uint32_t CRC32_CKSUM_Init(void);
  *
  * @return new CRC value.
  */
-uint32_t CRC32_CKSUM_UpdateFormulaIc(void const *in, size_t size, uint32_t crc);
+uint32_t CRC32_CKSUM_UpdateUsingFormula(void const *in, size_t size, uint32_t crc);
 
 /**
  * Updates POSIX cksum CRC32 with a buffer of input data using the Look-up-table.
@@ -51,7 +51,7 @@ uint32_t CRC32_CKSUM_UpdateFormulaIc(void const *in, size_t size, uint32_t crc);
  *
  * @return new CRC value.
  */
-uint32_t CRC32_CKSUM_UpdateLut(void const *in, size_t size, uint32_t crc);
+uint32_t CRC32_CKSUM_UpdateUsingLut(void const *in, size_t size, uint32_t crc);
 
 /**
  * Finalizes the POSIX cksum CRC32 calculation.

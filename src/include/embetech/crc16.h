@@ -41,7 +41,7 @@ uint16_t CRC16_CCITT_Init(void);
 
  * @return new CCITT CRC16 value.
  */
-uint16_t CRC16_CCITT_UpdateLut(void const *in, size_t size, uint16_t crc);
+uint16_t CRC16_CCITT_UpdateUsingLut(void const *in, size_t size, uint16_t crc);
 
 /**
  * Updates CCITT CRC16 with a buffer of input data using the polynomial division formula.
@@ -52,7 +52,7 @@ uint16_t CRC16_CCITT_UpdateLut(void const *in, size_t size, uint16_t crc);
 
  * @return new CCITT CRC16 value.
  */
-uint16_t CRC16_CCITT_UpdateFormulaIc(void const *in, size_t size, uint16_t crc);
+uint16_t CRC16_CCITT_UpdateUsingFormula(void const *in, size_t size, uint16_t crc);
 
 /**
  * Finalizes the CCITT CRC16.
@@ -77,7 +77,7 @@ uint16_t CRC16_MODBUS_Init(void);
 
  * @return new MODBUS CRC16 value.
  */
-uint16_t CRC16_MODBUS_UpdateLut(void const *in, size_t size, uint16_t crc);
+uint16_t CRC16_MODBUS_UpdateUsingLut(void const *in, size_t size, uint16_t crc);
 
 /**
  * Updates MODBUS CRC16 with a buffer of input data using the polynomial division formula.
@@ -88,7 +88,7 @@ uint16_t CRC16_MODBUS_UpdateLut(void const *in, size_t size, uint16_t crc);
 
  * @return new MODBUS CRC16 value.
  */
-uint16_t CRC16_MODBUS_UpdateFormulaIc(void const *in, size_t size, uint16_t crc);
+uint16_t CRC16_MODBUS_UpdateUsingFormula(void const *in, size_t size, uint16_t crc);
 
 /**
  * Finalizes the MODBUS CRC16.
