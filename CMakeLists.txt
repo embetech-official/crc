@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(crc VERSION 1.0.1)
+project(crc VERSION 2.0.0)
 set(PROJECT_LICENSE "MIT License")
 set(PROJECT_COPYRIGHT "Embetech sp. z o.o.")
 
