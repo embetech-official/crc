@@ -9,6 +9,20 @@
 
 #include "embetech/crc16.h"
 
+#if __has_include(<embetech/embetile.h>) && EMBETILE_ENABLED // This macro is defined by invoking embetile_define_component
+#include <embetech/embetile.h>
+// mark API functions - this enables to use them as embetile API
+uint16_t CRC16_MODBUS_Init(void) EMBETILE(CRC16_MODBUS_Init);
+uint16_t CRC16_MODBUS_UpdateUsingLut(void const *buf, size_t size, uint16_t crc) EMBETILE(CRC16_MODBUS_UpdateUsingLut);
+uint16_t CRC16_MODBUS_UpdateUsingFormula(void const *buf, size_t size, uint16_t crc) EMBETILE(CRC16_MODBUS_UpdateUsingFormula);
+uint16_t CRC16_MODBUS_Finalize(uint16_t crc) EMBETILE(CRC16_MODBUS_Finalize);
+
+uint16_t CRC16_CCITT_Init(void) EMBETILE(CRC16_CCITT_Init);
+uint16_t CRC16_CCITT_UpdateUsingLut(void const *buf, size_t size, uint16_t crc) EMBETILE(CRC16_CCITT_UpdateUsingLut);
+uint16_t CRC16_CCITT_UpdateUsingFormula(void const *buf, size_t size, uint16_t crc) EMBETILE(CRC16_CCITT_UpdateUsingFormula);
+uint16_t CRC16_CCITT_Finalize(uint16_t crc) EMBETILE(CRC16_CCITT_Finalize);
+#endif
+
 uint16_t CRC16_MODBUS_Init(void) { return 0xFFFF; }
 
 uint16_t CRC16_MODBUS_UpdateUsingLut(void const *in, size_t size, uint16_t crc) {

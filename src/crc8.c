@@ -9,6 +9,15 @@
 
 #include "embetech/crc8.h"
 
+#if __has_include(<embetech/embetile.h>) && EMBETILE_ENABLED // This macro is defined by invoking embetile_define_component
+#include <embetech/embetile.h>
+// mark API functions - this enables to use them as embetile API
+uint8_t CRC8_ITU_Init(void) EMBETILE(CRC8_ITU_Init);
+uint8_t CRC8_ITU_UpdateUsingLut(void const *buf, size_t size, uint8_t crc) EMBETILE(CRC8_ITU_UpdateUsingLut);
+uint8_t CRC8_ITU_UpdateUsingFormula(void const *buf, size_t size, uint8_t crc) EMBETILE(CRC8_ITU_UpdateUsingFormula);
+uint8_t CRC8_ITU_Finalize(void) EMBETILE(CRC8_ITU_Finalize);
+#endif
+
 uint8_t CRC8_ITU_Init(void) { return 0; }
 
 uint8_t CRC8_ITU_UpdateUsingLut(void const *buf, size_t size, uint8_t crc) {

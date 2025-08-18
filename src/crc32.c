@@ -9,6 +9,15 @@
 
 #include "embetech/crc32.h"
 
+#if __has_include(<embetech/embetile.h>) && EMBETILE_ENABLED // This macro is defined by invoking embetile_define_component
+#include <embetech/embetile.h>
+// mark API functions - this enables to use them as embetile API
+uint32_t CRC32_CKSUM_Init(void) EMBETILE(CRC32_CKSUM_Init);
+uint32_t CRC32_CKSUM_UpdateUsingLut(void const *buffer, size_t size, uint32_t crc) EMBETILE(CRC32_CKSUM_UpdateUsingLut);
+uint32_t CRC32_CKSUM_UpdateUsingFormula(void const *buffer, size_t size, uint32_t crc) EMBETILE(CRC32_CKSUM_UpdateUsingFormula);
+uint32_t CRC32_CKSUM_Finalize(uint32_t crc) EMBETILE(CRC32_CKSUM_Finalize);
+#endif
+
 uint32_t CRC32_CKSUM_Init(void) { return 0x00000000; }
 
 uint32_t CRC32_CKSUM_UpdateUsingLut(void const *buffer, size_t size, uint32_t crc) {

@@ -5,10 +5,6 @@ target_include_directories(
 
 add_library(embetech::crc ALIAS crc)
 
-if (CRC_USE_LUT_16)
-  target_compile_definitions(crc PRIVATE CRC16_CCITT_USE_LUT=1 CRC16_MODBUS_USE_LUT=1)
-endif ()
-
 find_package(embetile QUIET)
 if (embetile_FOUND)
   include(embetile_utils)
@@ -23,4 +19,3 @@ if (embetile_FOUND)
 
   embetile_make_available(crc)
 endif ()
-
