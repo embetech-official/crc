@@ -12,7 +12,6 @@ option(CRC_INSTALL "Configure install target" ON)
 add_subdirectory(src)
 
 if (CRC_TESTS)
-  set(CMAKE_CXX_STANDARD 20)
   include(CTest)
   add_subdirectory(tests EXCLUDE_FROM_ALL)
 endif ()
