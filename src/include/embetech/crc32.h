@@ -27,12 +27,12 @@ extern "C" {
 #endif
 
 /**
- * Returns CRC initialization value.
+ * Returns POSIX cksum CRC32 initialization value.
  */
-uint32_t CRC32_Init(void);
+uint32_t CRC32_CKSUM_Init(void);
 
 /**
- * Updates CRC with a buffer of input data and finalizes the CRC calculation.
+ * Updates POSIX cksum CRC32 with a buffer of input data using the polynomial division formula.
  *
  * @param[in] in input data buffer.
  * @param[in] size size of input data buffer (in bytes).
@@ -40,10 +40,10 @@ uint32_t CRC32_Init(void);
  *
  * @return new CRC value.
  */
-uint32_t CRC32_UpdateBuf(void const *in, size_t size, uint32_t crc);
+uint32_t CRC32_CKSUM_UpdateUsingFormula(void const *in, size_t size, uint32_t crc);
 
 /**
- * Updates CRC with a buffer of input data without finalizing the CRC calculation.
+ * Updates POSIX cksum CRC32 with a buffer of input data using the Look-up-table.
  *
  * @param[in] in input data buffer.
  * @param[in] size size of input data buffer (in bytes).
@@ -51,16 +51,16 @@ uint32_t CRC32_UpdateBuf(void const *in, size_t size, uint32_t crc);
  *
  * @return new CRC value.
  */
-uint32_t CRC32_Append(void const *in, size_t size, uint32_t crc);
+uint32_t CRC32_CKSUM_UpdateUsingLut(void const *in, size_t size, uint32_t crc);
 
 /**
- * Finalizes the CRC calculation.
+ * Finalizes the POSIX cksum CRC32 calculation.
  *
  * @param[in] crc current value of CRC.
  *
  * @return new CRC value
  */
-uint32_t CRC32_Finalize(uint32_t crc);
+uint32_t CRC32_CKSUM_Finalize(uint32_t crc);
 
 #ifdef __cplusplus
 }

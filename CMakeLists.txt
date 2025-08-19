@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(crc VERSION 1.0.1)
+project(crc VERSION 2.0.0)
 set(PROJECT_LICENSE "MIT License")
 set(PROJECT_COPYRIGHT "Embetech sp. z o.o.")
 
@@ -8,7 +8,6 @@ option(CRC_TESTS "Configure unit tests target" ${PROJECT_IS_TOP_LEVEL})
 option(CRC_DOC "Configure documentation target" ${PROJECT_IS_TOP_LEVEL})
 option(CRC_EXAMPLES "Configure examples target" ${PROJECT_IS_TOP_LEVEL})
 option(CRC_INSTALL "Configure install target" ON)
-option(CRC_USE_LUT_16 "Use lookup table for 16-bit CRC calculation" ON)
 
 add_subdirectory(src)
 
