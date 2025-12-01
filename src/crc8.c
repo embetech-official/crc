@@ -7,7 +7,7 @@
  * @brief     8-bit CRC calculation routines
  */
 
-#include "embetech/crc8.h"
+#include "embetech/crc.h"
 
 #if __has_include(<embetech/embetile.h>) && EMBETILE_ENABLED // This macro is defined by invoking embetile_define_component
 #include <embetech/embetile.h>

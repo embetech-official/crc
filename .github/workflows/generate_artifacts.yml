@@ -2,38 +2,48 @@ name: Generate Artifacts
 
 on:
   workflow_dispatch:
-  
   workflow_call:
 
 jobs:
-  test_and_release:
-    runs-on: ubuntu-latest
+  library:
+    runs-on: [self-hosted, linux, x64]
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { toolchain: gcc, architecture: x86_64-linux-gnu }
+          - { toolchain: gcc, architecture: x86_64-windows-gnu }
+          - { toolchain: gcc, architecture: aarch64-linux-gnu }
+          - { toolchain: gcc, architecture: aarch32-linux-gnu }
+          - { toolchain: gcc, architecture: thumbv6m-none-eabi }
+          - { toolchain: gcc, architecture: thumbv7em-none-eabi }
+          - { toolchain: gcc, architecture: thumbv7em-none-eabihf}
+          - { toolchain: gcc, architecture: thumbv7m-none-eabi }
+          - { toolchain: gcc, architecture: thumbv8m.base-none-eabi }
+          - { toolchain: gcc, architecture: thumbv8m.main-none-eabihf }
+    env:
+      preset: ${{ matrix.config.toolchain }}::${{ matrix.config.architecture }}
     steps:
-      - name: Download doxygen
-        run: sudo apt-get install doxygen -y
-    
       - uses: lukka/get-cmake@latest
-        with:
-          useLocalCache: true
-      
+
       - uses: actions/checkout@v4
 
-      - name: Configure
-        run: cmake --preset native
-
-      - name: Build tests
-        run: cmake --build --preset ut
-
-      - name: Build doc
-        run: cmake --build --preset documentation
-        
-      - name: Test
-        run: ctest --preset ut   
-        
-      - name: Make source release
-        run: cmake --install build/native --component install-source
-
-      - uses: actions/upload-artifact@v4
+      - uses: robinraju/release-downloader@v1
         with:
-          name: crc-src-${{ github.ref_name }} 
-          path: build/native/install
+          repository: embetech-official/cmake-presets
+          tag: v0.0.1
+          fileName: CMakeUserPresets.json
+
+      - uses: lukka/run-cmake@v10
+        with:
+          configurePreset: ${{ env.preset }}
+          configurePresetAdditionalArgs: '["-DCRC_TESTS=0", "-DCRC_DOC=0", "-DCRC_EXAMPLES=0"]'
+          buildPreset: ${{ env.preset }}::install
+
+      - name: Upload library install directory
+        uses: actions/upload-artifact@v4
+        with:
+          name: libcrc_udp-${{ matrix.config.architecture }}
+          path: |
+            install/${{ env.preset }}/**
+          if-no-files-found: error
