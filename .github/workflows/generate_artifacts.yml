@@ -43,7 +43,7 @@ jobs:
       - name: Upload library install directory
         uses: actions/upload-artifact@v4
         with:
-          name: libcrc_udp-${{ matrix.config.architecture }}
+          name: libcrc-${{ matrix.config.architecture }}
           path: |
             install/${{ env.preset }}/**
           if-no-files-found: error
