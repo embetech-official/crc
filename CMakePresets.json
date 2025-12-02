@@ -2,7 +2,7 @@
     "version": 6,
     "configurePresets": [
         {
-            "name": "native-gnu",
+            "name": "gcc-native",
             "description": "Use any available GNU compiler",
             "generator": "Ninja Multi-Config",
             "binaryDir": "${sourceDir}/build/${presetName}",
@@ -26,20 +26,20 @@
         {
             "name": "all-debug",
             "displayName": "all [Debug]",
-            "configurePreset": "native-gnu",
+            "configurePreset": "gcc-native",
             "configuration": "Debug"
         },
         {
             "name": "ut",
             "description": "Unit tests",
-            "configurePreset": "native-gnu",
+            "configurePreset": "gcc-native",
             "configuration": "Debug",
             "targets": "crc_ut"
         },
         {
             "name": "install",
             "displayName": "Install",
-            "configurePreset": "native-gnu",
+            "configurePreset": "gcc-native",
             "configuration": "Debug",
             "targets": [
                 "install:Release",
@@ -50,7 +50,7 @@
     "testPresets": [
         {
             "name": "ut",
-            "configurePreset": "native-gnu",
+            "configurePreset": "gcc-native",
             "configuration": "Debug",
             "output": {
                 "outputOnFailure": true
@@ -67,7 +67,7 @@
             "steps": [
                 {
                     "type": "configure",
-                    "name": "native-gnu"
+                    "name": "gcc-native"
                 },
                 {
                     "type": "build",
