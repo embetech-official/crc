@@ -8,10 +8,10 @@ jobs:
   build_all:
     runs-on: [ubuntu-latest]
     steps:
-     - uses: actions/checkout@v4
-     - uses: ssciwr/doxygen-install@v1
-     - uses: lukka/get-cmake@latest
-     - uses: lukka/run-cmake@v10
+     - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+     - uses: ssciwr/doxygen-install@501e53b879da7648ab392ee226f5b90e42148449
+     - uses: lukka/get-cmake@9e07ecdcee1b12e5037e42f410b67f03e2f626e1
+     - uses: lukka/run-cmake@af1be47fd7c933593f687731bc6fdbee024d3ff4
        with:
          workflowPreset: 'native-gcc'
       

@@ -24,24 +24,24 @@ jobs:
     env:
       preset: ${{ matrix.config.toolchain }}::${{ matrix.config.architecture }}
     steps:
-      - uses: lukka/get-cmake@latest
+      - uses: lukka/get-cmake@9e07ecdcee1b12e5037e42f410b67f03e2f626e1
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
-      - uses: robinraju/release-downloader@v1
+      - uses: robinraju/release-downloader@daf26c55d821e836577a15f77d86ddc078948b05
         with:
           repository: embetech-official/cmake-presets
           tag: v0.0.1
           fileName: CMakeUserPresets.json
 
-      - uses: lukka/run-cmake@v10
+      - uses: lukka/run-cmake@af1be47fd7c933593f687731bc6fdbee024d3ff4
         with:
           configurePreset: ${{ env.preset }}
           configurePresetAdditionalArgs: '["-DCRC_TESTS=0", "-DCRC_DOC=0", "-DCRC_EXAMPLES=0"]'
           buildPreset: ${{ env.preset }}::install
 
       - name: Upload library install directory
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         with:
           name: libcrc-${{ matrix.config.architecture }}
           path: |
