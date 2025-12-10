@@ -1,6 +1,8 @@
 add_library(crc STATIC)
 add_library(embetech::crc ALIAS crc)
 
+target_compile_features(crc PRIVATE c_std_99)
+
 target_sources(
   crc
   PRIVATE crc16.c crc32.c crc8.c crc_version.c
