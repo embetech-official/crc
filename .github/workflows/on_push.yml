@@ -3,6 +3,8 @@ name: CI Tests
 on:
   push:
   workflow_dispatch:
+  schedule:
+    - cron: '15 10 * * 1' # Run at 10:15 every Monday
 
 jobs:
   build_all:
