@@ -32,7 +32,6 @@ words:
  - cxxflags
  - destdir
  - endforeach
- - embeutils
  - embetile
  - embetech
  - modbus

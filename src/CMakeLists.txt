@@ -17,7 +17,7 @@ target_sources(
 
 if (PROJECT_IS_TOP_LEVEL)
   include(${PROJECT_SOURCE_DIR}/cmake/git_utils.cmake)
-  get_git_commit_id(CRC_COMMIT_ID REQUIRED)
+  get_git_commit_id(CRC_COMMIT_ID REQUIRED LENGTH 8)
 endif ()
 
 if (NOT CRC_COMMIT_ID) # Fallback for out of tree builds
@@ -28,8 +28,6 @@ target_compile_definitions(
   crc PRIVATE CRC_VERSION_MAJOR=${PROJECT_VERSION_MAJOR} CRC_VERSION_MINOR=${PROJECT_VERSION_MINOR}
               CRC_VERSION_PATCH=${PROJECT_VERSION_PATCH} CRC_COMMIT_ID=${CRC_COMMIT_ID}
 )
-
-target_link_libraries(crc PUBLIC embetech::utils)
 
 find_package(embetile QUIET)
 if (embetile_FOUND)
