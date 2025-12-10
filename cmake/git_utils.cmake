@@ -49,24 +49,18 @@ function (get_git_commit_id OUTPUT)
   # Find Git quietly; escalate if REQUIRED and missing
   find_package(Git QUIET)
   if (NOT GIT_FOUND)
-    message(${error_msg_level}
-            "Failed to obtain git hash for directory ${directory}: git executable not found"
-    )
+    message(${error_msg_level} "Failed to obtain git hash for directory ${directory}: git executable not found")
     set(${OUTPUT} "${OUTPUT}-NOTFOUND" PARENT_SCOPE)
     return()
   endif ()
 
   execute_process(
-    COMMAND ${GIT_EXECUTABLE} -C ${directory} rev-parse --short=${length} HEAD
-    OUTPUT_VARIABLE commit_id OUTPUT_STRIP_TRAILING_WHITESPACE RESULT_VARIABLE result
-    ERROR_VARIABLE error_output
+    COMMAND ${GIT_EXECUTABLE} -C ${directory} rev-parse --short=${length} HEAD OUTPUT_VARIABLE commit_id OUTPUT_STRIP_TRAILING_WHITESPACE
+    RESULT_VARIABLE result ERROR_VARIABLE error_output
   )
 
   if (NOT result EQUAL 0)
-    message(
-      ${error_msg_level}
-      "Failed to obtain git hash for directory ${directory} - command returned ${result}: ${error_output}"
-    )
+    message(${error_msg_level} "Failed to obtain git hash for directory ${directory} - command returned ${result}: ${error_output}")
     set(${OUTPUT} "${OUTPUT}-NOTFOUND" PARENT_SCOPE)
     return()
   endif ()
