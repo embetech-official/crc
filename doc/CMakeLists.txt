@@ -1,6 +1,5 @@
-include(FindDoxygen)
-
-if (NOT DOXYGEN_FOUND)
+find_package(Doxygen QUIET)
+if (NOT Doxygen_FOUND)
   message(STATUS "Doxygen not found, documentation will not be generated")
   return()
 endif ()
