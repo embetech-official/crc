@@ -20,13 +20,12 @@ if (PROJECT_IS_TOP_LEVEL)
   get_git_commit_id(CRC_COMMIT_ID REQUIRED LENGTH 8)
 endif ()
 
-if (NOT CRC_COMMIT_ID) # Fallback for out of tree builds
-  set(CRC_COMMIT_ID 0)
+if (NOT CRC_COMMIT_ID) 
+  set(CRC_COMMIT_ID "local") # Fallback for out of tree builds
 endif ()
 
 target_compile_definitions(
-  crc PRIVATE CRC_VERSION_MAJOR=${PROJECT_VERSION_MAJOR} CRC_VERSION_MINOR=${PROJECT_VERSION_MINOR} CRC_VERSION_PATCH=${PROJECT_VERSION_PATCH}
-              CRC_COMMIT_ID=${CRC_COMMIT_ID}
+  crc PRIVATE CRC_VERSION="${PROJECT_VERSION}+${CRC_COMMIT_ID}"
 )
 
 find_package(embetile QUIET)
