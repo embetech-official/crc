@@ -8,6 +8,6 @@
 #define STR_HELPER(x) #x
 #define STR(x) STR_HELPER(x)
 
-static_assert(sizeof(CRC_VERSION) <= 64, "CRC_VERSION too long"); // NOLINT(readability-magic-numbers) - 8 chars + NUL
+static_assert(sizeof(CRC_VERSION) <= 64, "CRC_VERSION too long"); // NOLINT(readability-magic-numbers) - 64 bytes max
 
 char const *CRC_GetVersionString(void) { return (CRC_VERSION); }
