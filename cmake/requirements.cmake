@@ -5,8 +5,8 @@ file(DOWNLOAD https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.42.0/C
 
 include(${CMAKE_BINARY_DIR}/cmake/CPM.cmake)
 
-cpmaddpackage("gh:embetech-official/embeutils#v1")
+CPMAddPackage("gh:embetech-official/embeutils#v1")
 
 if (CRC_TESTS)
-  cpmaddpackage("gh:google/googletest#main")
+  CPMAddPackage("gh:google/googletest#main")
 endif ()

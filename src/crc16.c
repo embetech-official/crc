@@ -7,7 +7,7 @@
  * @brief     16-bit CRC calculation routines
  */
 
-#include "embetech/crc.h"
+#include "embetech/crc16.h"
 
 #if __has_include(<embetech/embetile.h>) && EMBETILE_ENABLED // This macro is defined by invoking embetile_define_component
 #include <embetech/embetile.h>

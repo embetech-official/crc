@@ -15,12 +15,24 @@ enabledFileTypes:
 
 files: /**
 ignorePaths:
-- doc/CMakeLists.txt
 - .clangd
-- .cspell.yaml
+- .clang-format
+- .cmake-format
+- .cspell.yml
 - build/**
 
+ignoreRegExpList:
+ - /-W(no)*[a-z]+/g # ignore compiler warning flags
+ - /-D[A-Z]+/g # ignore compiler define flags
+
 words:
+ - ccitt
+ - cksum
+ - codacy
+ - cxxflags
+ - destdir
+ - endforeach
  - embeutils
  - embetile
  - embetech
+ - modbus
