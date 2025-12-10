@@ -18,7 +18,7 @@
 #error "CRC_VERSION_PATCH is not defined"
 #endif
 
-#if 0 == CRC_COMMIT_ID
+#if (!defined CRC_COMMIT_ID) || (0 == AS_HEX(CRC_COMMIT_ID))
 #define CRC_COMMIT_ID_STR "local"
 #else
 #define CRC_COMMIT_ID_STR STR(CRC_COMMIT_ID)
