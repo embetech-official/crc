@@ -1,9 +1,7 @@
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
-#include <embetech/crc16.h>
-#include <embetech/crc32.h>
-#include <embetech/crc8.h>
-#include <format>
+#include <embetech/crc.h>
+
 #include <random>
 #include <vector>
 

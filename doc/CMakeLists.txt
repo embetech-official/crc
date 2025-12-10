@@ -1,5 +1,8 @@
-include(FindDoxygen)
-find_package(Doxygen REQUIRED)
+find_package(Doxygen QUIET)
+if (NOT Doxygen_FOUND)
+  message(STATUS "Doxygen not found, documentation will not be generated")
+  return()
+endif ()
 
 set(DOXYGEN_PROJECT_NAME "EMBETECH CRC")
 set(DOXYGEN_OPTIMIZE_OUTPUT_FOR_C YES)
@@ -16,13 +19,9 @@ set(DOXYGEN_HTML_COLORSTYLE DARK)
 set(DOXYGEN_GENERATE_LATEX NO)
 set(DOXYGEN_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/crc_documentation)
 set(DOXYGEN_GENERATE_TAGFILE ${DOXYGEN_OUTPUT_DIRECTORY}/html/embetech_crc.tag)
-set(DOXYGEN_ALIASES
-    [[purpose=@par Purpose:]] [[license=@par License:]] [[compiler=@par Compiler:]]
-    [[ hardware=@par Hardware:]] [[comments=@par Comments:]] [[doc=@par Documented using:]]
+set(DOXYGEN_ALIASES [[purpose=@par Purpose:]] [[license=@par License:]] [[compiler=@par Compiler:]] [[ hardware=@par Hardware:]]
+                    [[comments=@par Comments:]] [[doc=@par Documented using:]]
 )
 set(DOXYGEN_WARN_AS_ERROR YES)
 
-doxygen_add_docs(
-  crc_doc ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/src/include/embetech
-  COMMENT "Generate documentation"
-)
+doxygen_add_docs(crc_doc ALL ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/src/include/embetech COMMENT "Generate documentation")

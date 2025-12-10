@@ -33,24 +33,24 @@ uint8_t CRC8_ITU_Init(void);
 /**
  * Updates ITU CRC8 with a buffer of input data using the polynomial division formula.
  *
- * @param[in] in input data buffer.
- * @param[in] size size of input data buffer (in bytes).
+ * @param[in] data input data buffer.
+ * @param[in] data_size size of input data buffer (in bytes).
  * @param[in] crc current value of CRC.
  *
  * @return new CRC value.
  */
-uint8_t CRC8_ITU_UpdateUsingFormula(void const *in, size_t size, uint8_t crc);
+uint8_t CRC8_ITU_UpdateUsingFormula(void const *data, size_t data_size, uint8_t crc);
 
 /**
  * Updates ITU CRC8 with a buffer of input data using the Look-up-table.
  *
- * @param[in] in input data buffer.
- * @param[in] size size of input data buffer (in bytes).
+ * @param[in] data input data buffer.
+ * @param[in] data_size size of input data buffer (in bytes).
  * @param[in] crc current value of CRC.
 
  * @return new CRC value.
  */
-uint8_t CRC8_ITU_UpdateUsingLut(void const *in, size_t size, uint8_t crc);
+uint8_t CRC8_ITU_UpdateUsingLut(void const *data, size_t data_size, uint8_t crc);
 
 /**
  * Finalizes the CRC.
