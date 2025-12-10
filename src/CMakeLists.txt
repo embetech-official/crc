@@ -22,13 +22,11 @@ if (PROJECT_IS_TOP_LEVEL)
   get_git_commit_id(CRC_COMMIT_ID REQUIRED LENGTH 8)
 endif ()
 
-if (NOT CRC_COMMIT_ID) 
+if (NOT CRC_COMMIT_ID)
   set(CRC_COMMIT_ID "local") # Fallback for out of tree builds
 endif ()
 
-target_compile_definitions(
-  crc PRIVATE CRC_VERSION="${PROJECT_VERSION}+${CRC_COMMIT_ID}"
-)
+target_compile_definitions(crc PRIVATE CRC_VERSION="${PROJECT_VERSION}+${CRC_COMMIT_ID}")
 
 find_package(embetile QUIET)
 if (embetile_FOUND)
