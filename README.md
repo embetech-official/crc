@@ -1,6 +1,6 @@
 # CRC
 
-[![Unit Tests](https://github.com/embetech-official/crc/actions/workflows/unit_tests.yml/badge.svg)](https://github.com/embetech-official/crc/actions/workflows/unit_tests.yml)
+[![CI Tests](https://github.com/embetech-official/crc/actions/workflows/on_push.yml/badge.svg)](https://github.com/embetech-official/crc/actions/workflows/on_push.yml)
 ![GitHub License](https://img.shields.io/github/license/embetech-official/crc)
 ![GitHub Release](https://img.shields.io/github/v/release/embetech-official/crc)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b8de2d81aca841dcb9f8c44d48c68b3e)](https://app.codacy.com/gh/embetech-official/crc/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
