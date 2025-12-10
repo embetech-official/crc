@@ -29,9 +29,6 @@ parse:
       kwargs:
         CHANNEL: 1
         CONFIG: "*"
-
-  parse:
-  additional_commands:
     cpmaddpackage:
       pargs:
         nargs: '*'

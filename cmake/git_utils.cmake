@@ -23,6 +23,11 @@
 # - When `QUIET` is specified, stderr from the Git command is suppressed.
 function (get_git_commit_id OUTPUT)
 
+  set(oneValueArgs DIRECTORY LENGTH)
+  set(multiValueArgs)
+  set(options REQUIRED QUIET)
+  cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
   if (arg_REQUIRED)
     set(error_msg_level FATAL_ERROR)
   elseif (arg_QUIET)
@@ -30,11 +35,6 @@ function (get_git_commit_id OUTPUT)
   else ()
     set(error_msg_level WARNING)
   endif ()
-
-  set(oneValueArgs DIRECTORY LENGTH)
-  set(multiValueArgs)
-  set(options REQUIRED QUIET)
-  cmake_parse_arguments(arg "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   set(directory ${CMAKE_SOURCE_DIR})
   if (arg_DIRECTORY)
@@ -57,7 +57,7 @@ function (get_git_commit_id OUTPUT)
   endif ()
 
   execute_process(
-    COMMAND ${GIT_EXECUTABLE} -C ${directory} rev-parse --short=${arg_LENGTH} HEAD
+    COMMAND ${GIT_EXECUTABLE} -C ${directory} rev-parse --short=${length} HEAD
     OUTPUT_VARIABLE commit_id OUTPUT_STRIP_TRAILING_WHITESPACE RESULT_VARIABLE result
     ERROR_VARIABLE error_output
   )

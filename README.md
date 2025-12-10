@@ -22,7 +22,7 @@ The easiest way to fetch this component is to use [CPM.cmake](https://github.com
 In your CMakeLists.txt add:
 
 ```cmake
-  CPMAddPackage("gh:google/crc@1")
+  CPMAddPackage("gh:embetech-official/crc@2")
 ```
 
 In your source files:

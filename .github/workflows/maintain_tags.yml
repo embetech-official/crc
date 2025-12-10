@@ -12,6 +12,6 @@ jobs:
 
         steps:
             - name: 'Update Tags'
-              uses: cssnr/update-version-tags-action@1ff20ac5555f024f5e72b7ccdf165b867878f953
+              uses: cssnr/update-version-tags-action@1ff20ac5555f024f5e72b7ccdf165b867878f953 # v2.0.0
               with:
                   token: ${{ secrets.GITHUB_TOKEN }}
