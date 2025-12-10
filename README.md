@@ -23,7 +23,7 @@ In your CMakeLists.txt add:
 
 ```cmake
   CPMAddPackage("gh:google/crc@1")
-``````
+```
 
 In your source files:
 
