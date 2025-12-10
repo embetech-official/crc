@@ -42,5 +42,5 @@ uint8_t additional_data = 0xaa;
 uint16_t crc2 = CRC16_CCITT_Init();
 crc2 = CRC16_CCITT_UpdateBuf(your_data, sizeof(your_data), crc2);
 crc2 = CRC16_CCITT_UpdateBuf(&additional_data, sizeof(additional_data), crc2);
-crc2 = CRC16_CCITT_Finalize(crc);
+crc2 = CRC16_CCITT_Finalize(crc2);
 ```
