@@ -2,7 +2,7 @@
     "version": 6,
     "configurePresets": [
         {
-            "name": "gcc-native",
+            "name": "native-gnu",
             "description": "Use any available GNU compiler",
             "generator": "Ninja Multi-Config",
             "binaryDir": "${sourceDir}/build/${presetName}",
@@ -17,8 +17,8 @@
                 "CMAKE_C_COMPILER": "gcc"
             },
             "environment": {
-                "C_WARNINGS": "-Wall -Wextra -Wpedantic -Wunused-parameter -Winit-self -Wcast-align -Wconversion -Wnull-dereference -Wduplicated-cond  -Wsign-conversion -Wlogical-op",
-                "CXX_WARNINGS": "-Wall -Wextra -Wpedantic -Wunused-parameter -Winit-self -Wcast-align -Wconversion -Wnull-dereference -Wduplicated-cond  -Wsign-conversion -Wlogical-op"
+                "CFLAGS": "-Wall -Wextra -Wpedantic -Wunused-parameter -Winit-self -Wcast-align -Wconversion -Wnull-dereference -Wduplicated-cond  -Wsign-conversion -Wlogical-op",
+                "CXXFLAGS": "-Wall -Wextra"
             }
         }
     ],
@@ -26,21 +26,19 @@
         {
             "name": "all-debug",
             "displayName": "all [Debug]",
-            "configurePreset": "gcc-native",
+            "configurePreset": "native-gnu",
             "configuration": "Debug"
         },
         {
-            "name": "ut",
-            "description": "Unit tests",
-            "configurePreset": "gcc-native",
-            "configuration": "Debug",
-            "targets": "crc_ut"
+            "name": "all-release",
+            "displayName": "all [Release]",
+            "configurePreset": "native-gnu",
+            "configuration": "Release"
         },
         {
             "name": "install",
-            "displayName": "Install",
-            "configurePreset": "gcc-native",
-            "configuration": "Debug",
+            "description": "Install",
+            "configurePreset": "native-gnu",
             "targets": [
                 "install:Release",
                 "install:Debug"
@@ -50,7 +48,7 @@
     "testPresets": [
         {
             "name": "ut",
-            "configurePreset": "gcc-native",
+            "configurePreset": "native-gnu",
             "configuration": "Debug",
             "output": {
                 "outputOnFailure": true
@@ -67,7 +65,7 @@
             "steps": [
                 {
                     "type": "configure",
-                    "name": "gcc-native"
+                    "name": "native-gnu"
                 },
                 {
                     "type": "build",

@@ -2,8 +2,17 @@ add_library(crc STATIC)
 add_library(embetech::crc ALIAS crc)
 
 target_sources(
-  crc PRIVATE crc16.c crc32.c crc8.c crc_version.c PUBLIC FILE_SET HEADERS BASE_DIRS include FILES
-                                                          include/embetech/crc.h
+  crc
+  PRIVATE crc16.c crc32.c crc8.c crc_version.c
+  PUBLIC FILE_SET
+         HEADERS
+         BASE_DIRS
+         include
+         FILES
+         include/embetech/crc.h
+         include/embetech/crc8.h
+         include/embetech/crc16.h
+         include/embetech/crc32.h
 )
 
 set_target_properties(crc PROPERTIES VERIFY_INTERFACE_HEADER_SETS ON)
