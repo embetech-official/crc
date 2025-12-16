@@ -12,7 +12,7 @@ CRC is a C library to calculate 8/16/32- bit checksums using predefined polynomi
 ## Supported Polynomials
 
 - CRC8-ITU (Poly 0x07, Init 0x00, no input/output bit reflection, XorOut 0x55)
-- CRC16-CCITT BLUETOOTH CCITT-TRUE V-41-LSB KERMIT (Poly 0x1021, Init 0xFFFF, no input/output bit reflection, XorOut 0x0000)
+- CRC16-CCITT BLUETOOTH CCITT-TRUE V-41-LSB KERMIT (Poly 0x1021, Init 0x0000, no input/output bit reflection, XorOut 0x0000)
 - CRC16-MODBUS (Poly 0x8005, Init 0xFFFF, input/output bit reflection, XorOut 0x0000)
 - CRC32-POSIX/cksum (Poly 0x04C11DB7, Init 0x00000000, no input/output bit reflection, XorOut 0xFFFFFFFF)
 
