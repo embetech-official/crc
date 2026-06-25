@@ -15,4 +15,6 @@ configure_package_config_file(
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/crc-config.cmake ${CMAKE_CURRENT_BINARY_DIR}/crc-config-version.cmake DESTINATION ${METADATA_DIR})
 
+install(FILES LICENSE.txt DESTINATION ${METADATA_DIR})
+
 install(SCRIPT ${CMAKE_CURRENT_LIST_DIR}/install_header_licenses.cmake)
