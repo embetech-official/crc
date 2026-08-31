@@ -18,3 +18,6 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/crc-config.cmake ${CMAKE_CURRENT_BINAR
 install(FILES LICENSE.txt DESTINATION ${METADATA_DIR})
 
 install(SCRIPT ${CMAKE_CURRENT_LIST_DIR}/install_header_licenses.cmake)
+
+install(FILES REUSE.toml DESTINATION .)
+install(DIRECTORY LICENSES DESTINATION .)
