@@ -65,7 +65,7 @@ uint32_t CRC32_CKSUM_UpdateUsingFormula(void const *data, size_t data_size, uint
 
   while(data_size--) {
     // with help from https://github.com/Michaelangel007/crc32
-    crc = crc ^ (*byte++ << 24);
+    crc = crc ^ ((uint32_t)*byte++ << 24);
     for(int bit = 0; bit < 8; bit++) {
       if(crc & (1L << 31)) {
         crc = (crc << 1) ^ 0x04C11DB7;
