@@ -17,16 +17,10 @@ target_sources(
          include/embetech/crc32.h
 )
 
-if (PROJECT_IS_TOP_LEVEL)
-  include(${PROJECT_SOURCE_DIR}/cmake/git_utils.cmake)
-  get_git_commit_id(CRC_COMMIT_ID REQUIRED LENGTH 8)
-endif ()
+include(${PROJECT_SOURCE_DIR}/cmake/versioning.cmake)
+get_version_string(CRC_VERSION_STRING VERSION ${PROJECT_VERSION})
 
-if (NOT CRC_COMMIT_ID)
-  set(CRC_COMMIT_ID "local") # Fallback for out of tree builds
-endif ()
-
-target_compile_definitions(crc PRIVATE CRC_VERSION="${PROJECT_VERSION}+${CRC_COMMIT_ID}")
+target_compile_definitions(crc PRIVATE CRC_VERSION="${CRC_VERSION_STRING}")
 
 find_package(embetile QUIET)
 if (embetile_FOUND)
