@@ -1,5 +1,5 @@
-# Generic target-architecture-id detection, meant to be reused by any component's *-config.cmake in a bundle
-# built for the architecture ids used by embetech-official/cmake-presets
+# Architecture selection helpers, reused by any component's *-config.cmake in a bundle built for
+# the architecture ids used by embetech-official/cmake-presets
 # (https://github.com/embetech-official/cmake-presets): x86_64-linux-gnu, x86_64-windows-gnu,
 # x86_64-windows-msvc, aarch64-linux-gnu, aarch32-linux-gnu, thumbv6m-none-eabi, thumbv7m-none-eabi,
 # thumbv7em-none-eabi[hf], thumbv8m.base-none-eabi, thumbv8m.main-none-eabihf.
@@ -129,3 +129,22 @@ function(detect_architecture_triplet out_var)
 
   set(${out_var} "" PARENT_SCOPE)
 endfunction()
+
+# find_architecture_targets_file(<project-name> <arch> <search-dir> <output-variable>)
+#   Resolves <search-dir>/<project-name>-<arch>-targets.cmake, or errors out listing the
+#   architectures actually found there.
+function (find_architecture_targets_file project_name arch search_dir out_var)
+  set(file "${search_dir}/${project_name}-${arch}-targets.cmake")
+  if (NOT EXISTS "${file}")
+    file(GLOB candidates "${search_dir}/${project_name}-*-targets.cmake")
+    set(available "")
+    foreach (candidate IN LISTS candidates)
+      get_filename_component(name "${candidate}" NAME)
+      string(REGEX REPLACE "^${project_name}-(.+)-targets\\.cmake$" "\\1" available_arch "${name}")
+      list(APPEND available "${available_arch}")
+    endforeach ()
+    string(REPLACE ";" ", " available "${available}")
+    message(FATAL_ERROR "${project_name} was not built for architecture '${arch}'. Available architectures: ${available}")
+  endif ()
+  set(${out_var} "${file}" PARENT_SCOPE)
+endfunction ()
