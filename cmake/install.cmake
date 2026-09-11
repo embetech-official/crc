@@ -36,4 +36,4 @@ install(EXPORT crc-${CMAKE_LIBRARY_ARCHITECTURE}-targets NAMESPACE embetech:: DE
 
 install(SCRIPT ${CMAKE_CURRENT_LIST_DIR}/install_header_licenses.cmake)
 
-install(FILES LICENSE.txt DESTINATION .)
+install(FILES LICENSE.txt VERSION.txt DESTINATION .)
